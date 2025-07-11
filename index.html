@@ -11,8 +11,6 @@
     </style>
   </head>
   <body>
-    <video id="overlayTekst" src="./assets/overlayTekst.mp4" autoplay="true" loop="true"></video>
-
     <a-scene
       mindar-image="imageTargetSrc: ./mind/targets.mind;" 
       embedded
@@ -23,7 +21,6 @@
     >
       <a-assets>
         <img id="overlay1" src="./assets/overlay1.png" />
-        <video id="overlayTekst" src="./assets/overlayTekst.mp4" autoplay="true" loop="true"></video>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -35,14 +32,6 @@
           width="1" height="1"
           position="0 0 0"
         ></a-image>
-      </a-entity>
-      <a-entity mindar-image-target="targetIndex: 1">
-        <a-video
-          id="overlayTekst"
-          src="./assets/overlayTekst.mp4"
-          width="1" height="1"
-          position="0 0 0"
-        ></a-video>
       </a-entity>
     </a-scene>
   </body>
