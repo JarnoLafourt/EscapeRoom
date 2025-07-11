@@ -36,7 +36,6 @@
           position="0 0 0"
         ></a-image>
       </a-entity>
-      
       <a-entity mindar-image-target="targetIndex: 1">
         <a-video
           id="overlayTekst"
@@ -46,26 +45,5 @@
         ></a-video>
       </a-entity>
     </a-scene>
-
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        const scene = document.querySelector("a-scene");
-        const video = document.querySelector("./assets/overlayTekst.mp4");
-
-        // Start de video als target 0 herkend wordt
-        scene.addEventListener("targetFound", (e) => {
-          if (e.detail.index === 0) {
-            video.play();
-          }
-        });
-
-        // Pauzeer video als target 0 verdwijnt
-        scene.addEventListener("targetLost", (e) => {
-          if (e.detail.index === 0) {
-            video.pause();
-          }
-        });
-      });
-    </script>
   </body>
 </html>
