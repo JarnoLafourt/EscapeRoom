@@ -1,44 +1,25 @@
-
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
-    <style>
-      body { margin: 0; overflow: hidden; }
-      video { display: none; }
-    </style>
   </head>
   <body>
-    <a-scene mindar-image="imageTargetSrc: ./mind/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: true">
+    <a-scene mindar-image="imageTargetSrc: ./mind/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
-        <img id="overlay1" src="./assets/overlay1.png" />
+	      <img id="overlay1" src="./assets/overlay1.png" />
         <video id="overlayVid1" src="./assets/overlayVid1.mp4" loop crossorigin="anonymous" playsinline muted></video>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-      <!-- Target 0: toont een afbeelding -->
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-plane 
-          src="#overlay1" 
-          position="0 0 0" 
-          height="1" 
-          width="1" 
-          rotation="0 0 0"
-        ></a-plane>
+        <a-plane src="#overlay1" position="0 0 0" height="0.552" width="1" rotation="0 0 0"></a-plane>
+        >
       </a-entity>
 
-      <!-- Target 1: speelt video af -->
       <a-entity mindar-image-target="targetIndex: 1">
-        <a-video 
-          id="videoDisplay" 
-          src="#overlayVid1" 
-          position="0 0 0" 
-          height="1" 
-          width="1" 
-          rotation="0 0 0"
-        ></a-video>
+        <a-video src="#overlayVid1" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-video>
       </a-entity>
     </a-scene>
 
@@ -48,7 +29,7 @@
         const scene = document.querySelector("a-scene");
 
         scene.addEventListener("targetFound", (e) => {
-          if (e.detail.index === 1) {
+          if (e.detail.index === 0) {
             video.play().catch((err) => {
               console.error("Video kon niet starten:", err);
             });
@@ -56,7 +37,7 @@
         });
 
         scene.addEventListener("targetLost", (e) => {
-          if (e.detail.index === 1) {
+          if (e.detail.index === 0) {
             video.pause();
           }
         });
@@ -64,4 +45,3 @@
     </script>
   </body>
 </html>
-
