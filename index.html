@@ -9,7 +9,7 @@
     <a-scene mindar-image="imageTargetSrc: ./mind/targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
 	      <img id="overlay1" src="./assets/overlay1.png" />
-        <video id="overlayVid1" src="./assets/overlayVid1.mp4" ></video>
+        <video id="overlayVid1" src="./assets/overlayVid1.mp4" loop crossorigin="anonymous" playsinline muted></video>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -23,6 +23,27 @@
         <a-video src="#overlayVid1" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-video>
       </a-entity>
     </a-scene>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const video = document.querySelector("#overlayVid1");
+        const scene = document.querySelector("a-scene");
+
+        scene.addEventListener("targetFound", (e) => {
+          if (e.detail.index === 0) {
+            video.play().catch((err) => {
+              console.error("Video kon niet starten:", err);
+            });
+          }
+        });
+
+        scene.addEventListener("targetLost", (e) => {
+          if (e.detail.index === 0) {
+            video.pause();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 
