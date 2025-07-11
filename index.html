@@ -23,6 +23,25 @@
         <a-video src="#overlayVid1" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-video>
       </a-entity>
     </a-scene>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const scene = document.querySelector("a-scene");
+        const video = document.querySelector("#overlayVid1");
+
+        scene.addEventListener("targetFound", (e) => {
+          if (e.detail.index === 0) {
+            video.play();
+          }
+        });
+
+        scene.addEventListener("targetLost", (e) => {
+          if (e.detail.index === 0) {
+            video.pause();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
 
