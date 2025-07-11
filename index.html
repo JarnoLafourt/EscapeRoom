@@ -12,6 +12,7 @@
   </head>
   <body>
     <div id="ar-container">
+      <video id="overlayTekst" src="./assets/overlayTekst.mp4" loop crossorigin="anonymous"></video>
       <a-scene
         mindar-image="imageTargetSrc: ./mind/targets.mind;"
         embedded
@@ -22,7 +23,7 @@
       >
         <a-assets>
           <img id="overlay1" src="./assets/overlay.png" />
-          <img id="overlayTekst" src="./assets/overlayTekst.mp4" />
+          <video id="overlayTekst" src="./assets/overlayTekst.mp4" preload="auto" crossorigin="anonymous"></video>
         </a-assets>
 
         <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -31,7 +32,7 @@
           <a-image src="#overlay1" position="0 0 0" width="1" height="1"></a-image>
         </a-entity>
         <a-entity mindar-image-target="targetIndex: 1">
-          <a-image src="#overlayTekst" position="0 0 0" width="1" height="1"></a-image>
+          <a-video src="#overlayTekst" position="0 0 0" width="1" height="1" autoplay="false" loop="true"></a-video>
         </a-entity>
       </a-scene>
     </div>
