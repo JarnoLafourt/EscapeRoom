@@ -33,14 +33,26 @@
       </a-entity>
 
       <a-entity mindar-image-target="targetIndex: 1">
-        <a-video
-          id="overlayTekst"
-          src="#overlayTekst"
-          width="1" height="0.6" position="0 0 0"
-          autoplay="false"
-          loop="true">
-        </a-video>
+        <a-video id="overlayTekst" src="#overlayTekst" width="1" height="0.6" position="0 0 0" autoplay="false" loop="true"></a-video>
       </a-entity>
     </a-scene>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const sceneEl = document.querySelector('a-scene');
+        const video = document.querySelector("#videoAsset");
+
+        sceneEl.addEventListener("targetFound", (event) => {
+          if (event.detail.index === 0) {
+            video.play();
+          }
+        });
+
+        sceneEl.addEventListener("targetLost", (event) => {
+          if (event.detail.index === 0) {
+            video.pause();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
